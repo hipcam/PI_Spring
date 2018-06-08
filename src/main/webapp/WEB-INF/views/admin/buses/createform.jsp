@@ -33,7 +33,7 @@
 					</div>
 					<div class="form-group">
 						<label for="placa">Placa: </label>
-						<form:input id="txtplaca" path="placa" class="form-control" />
+						<form:input id="txtPlaca" path="placa" class="form-control" />
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Create" class="btn btn-success" />
@@ -55,10 +55,11 @@ $('#createForm').submit(function(event){
 	$.ajax({
 		type:"POST",
 		data: JSON.stringify(obj),
-		url: "https://tecsup-cloned-sicked-sunday.c9users.io:8080/integrador-api/public/api/bus/store",
+		url: "https://ide50-sicked-sunday.cs50.io:8080/integrador-api/public/api/bus/store",
 		contentType: "application/json",
 		success: function(response){
 			console.log("Exito");
+			window.open('http://localhost:8081/gestion/admin/menu');
 			//table.ajax.reload();
 			//table.draw();
 			//$('#modalNuevo').modal('hide');
@@ -67,6 +68,7 @@ $('#createForm').submit(function(event){
 	}).fail(function($xhr){
 		var data = $xhr.responseJSON;
 	});
+	
 });
 </script>
 </body>

@@ -30,16 +30,24 @@
 			<div class="col-md-6">
 				<h4 class="text-center">Eliminar Ruta</h4>
 				<hr>
-				<form:form method="post" servletRelativeAction="/admin/routes/delete" modelAttribute="routes">
-					<form:hidden path="idbus"/>
+				<form:form id="deleteForm" method="post" servletRelativeAction="/admin/routes/delete" modelAttribute="routes">
+						<form:hidden path="idparadero" />
 					<div class="form-group">
-						<label for="idbus">Id: </label>
-						<form:input path="idbus" class="form-control" readonly="true" />
+						<label for="id">Id: </label>
+						<form:input id="txtParadero" path="idparadero" class="form-control" readonly="true" />
 					</div>
 					<div class="form-group">
-						<label for="placa">Placa: </label>
-						<form:input path="placa" class="form-control" />
+						<label for="nombre">Nombre: </label>
+						<form:input id="txtNombre" path="nombre" class="form-control" />
 					</div>
+					<div class="form-group">
+						<label for="ubicacion">Ubicación: </label>
+						<form:input id="txtUbicacion" path="ubicacion" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="horapartida">Hora de partida: </label>
+						<form:input id="txtHorapartida" path="horapartida" class="form-control" type="time"/>
+					</div>	
 					<div class="form-group">
 						<input type="submit" value="Delete" class="btn btn-success" />
 						<a href="<%=request.getContextPath()%>/admin/routes/list" class="btn btn-danger">Cancel</a>
@@ -48,5 +56,29 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	$('#deleteForm').submit(function(event){
+		event.preventDefault();
+		var idparadero = $("#txtParadero").val();
+
+		console.log(idparadero);
+		$.ajax({
+			type:"GET",
+			data: JSON.stringify(obj),
+			url: "https://ide50-sicked-sunday.cs50.io:8080/integrador-api/public/api/paradero/destroy/"+idparadero,
+			contentType: "application/json",
+			success: function(response){
+				console.log("Exito");
+				window.open('http://localhost:8081/gestion/admin/routes/list');
+				//table.ajax.reload();
+				//table.draw();
+				//$('#modalNuevo').modal('hide');
+				 // window.location = "localhost:8081/gestion/admin/routes/list";
+			}
+		}).fail(function($xhr){
+			var data = $xhr.responseJSON;
+		});
+	});
+	</script>
 </body>
 </html>

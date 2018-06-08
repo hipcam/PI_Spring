@@ -60,24 +60,25 @@ $('#createForm').submit(function(event){
 	event.preventDefault();
 	var ubicacion = $("#txtUbicacion").val();
 	var nombre_empresa = $("#txtNombreEmp").val();
-	var alumno_idalumno = $("#txtAlumnoId").val();
-	var fecha = $("#txtFecha").val();
+	var idalumno = $("#txtAlumnoId").val();
+	var inicio = $("#txtFecha").val();
 	
 	var obj ={
 			
 			"ubicacion": ubicacion,
 			"nombre_empresa": nombre_empresa,
-			"alumno_idalumno": alumno_idalumno,
-			"fecha": fecha
+			"idalumno": idalumno,
+			"inicio": inicio
 	};
 	console.log(obj);
 	$.ajax({
 		type:"POST",
 		data: JSON.stringify(obj),
-		url: "https://tecsup-cloned-sicked-sunday.c9users.io:8080/integrador-api/public/api/pasantia/store",
+		url: "https://ide50-sicked-sunday.cs50.io:8080/integrador-api/public/api/pasantia/store",
 		contentType: "application/json",
 		success: function(response){
 			console.log("Exito");
+			window.open('http://localhost:8081/gestion/admin/pasant/list');
 			//table.ajax.reload();
 			//table.draw();
 			//$('#modalNuevo').modal('hide');

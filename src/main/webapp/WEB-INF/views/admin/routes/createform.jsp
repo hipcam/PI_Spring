@@ -71,10 +71,11 @@ $('#createForm').submit(function(event){
 	$.ajax({
 		type:"POST",
 		data: JSON.stringify(obj),
-		url: "https://tecsup-cloned-sicked-sunday.c9users.io:8080/integrador-api/public/api/paradero/store",
+		url: "https://ide50-sicked-sunday.cs50.io:8080/integrador-api/public/api/paradero/store",
 		contentType: "application/json",
 		success: function(response){
 			console.log("Exito");
+			window.open('http://localhost:8081/gestion/admin/routes/list');
 			//table.ajax.reload();
 			//table.draw();
 			//$('#modalNuevo').modal('hide');

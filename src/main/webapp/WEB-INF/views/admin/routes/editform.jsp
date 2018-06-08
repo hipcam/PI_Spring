@@ -33,7 +33,7 @@
 					<form:hidden path="idparadero" />
 					<div class="form-group">
 						<label for="id">Id: </label>
-						<form:input path="idparadero" class="form-control" readonly="true" />
+						<form:input id="txtId" path="idparadero" class="form-control" readonly="true" />
 					</div>
 					<div class="form-group">
 						<label for="nombre">Nombre: </label>
@@ -59,11 +59,13 @@
 <script>
 $('#editForm').submit(function(event){
 	event.preventDefault();
+	var idparadero = $("#txtId").val();
 	var nombre = $("#txtNombre").val();
 	var ubicacion = $("#txtUbicacion").val();
 	var horapartida = $("#txtHorapartida").val();
 
 	var obj ={
+			"idparadero": idparadero,
 			"nombre": nombre,
 			"ubicacion": ubicacion,
 			"horapartida": horapartida
@@ -76,6 +78,7 @@ $('#editForm').submit(function(event){
 		contentType: "application/json",
 		success: function(response){
 			console.log("Exito");
+			window.open('http://localhost:8081/gestion/admin/routes/list');
 			//table.ajax.reload();
 			//table.draw();
 			//$('#modalNuevo').modal('hide');

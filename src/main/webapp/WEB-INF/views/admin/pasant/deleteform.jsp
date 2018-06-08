@@ -11,6 +11,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 </head>
 <body>
 
@@ -19,11 +25,11 @@
 			<div class="col-md-6">
 				<h4 class="text-center">Eliminar Pasantía</h4>
 				<hr>
-				<form:form method="post" servletRelativeAction="/admin/pasant/delete" modelAttribute="pasant">
+				<form:form id="deleteForm" method="post" servletRelativeAction="/admin/pasant/delete" modelAttribute="pasant">
 					<form:hidden path="idpasantia" />
 					<div class="form-group">
 						<label for="idpasantia">Id: </label>
-						<form:input path="idpasantia" class="form-control" readonly="true" />
+						<form:input id="txtPasantia" path="idpasantia" class="form-control" readonly="true" />
 					</div>
 					<div class="form-group">
 						<label for="ubicacion">Ubicación: </label>
@@ -49,7 +55,30 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	$('#deleteForm').submit(function(event){
+		event.preventDefault();
+		var idpasantia = $("#txtPasantia").val();
 
+		console.log(idpasantia);
+		$.ajax({
+			type:"GET",
+			data: JSON.stringify(obj),
+			url: "https://ide50-sicked-sunday.cs50.io:8080/integrador-api/public/api/pasantia/destroy/"+idpasantia,
+			contentType: "application/json",
+			success: function(response){
+				console.log("Exito");
+				window.open('http://localhost:8081/gestion/admin/pasant/list');
+				//table.ajax.reload();
+				//table.draw();
+				//$('#modalNuevo').modal('hide');
+				 // window.location = "localhost:8081/gestion/admin/routes/list";
+			}
+		}).fail(function($xhr){
+			var data = $xhr.responseJSON;
+		});
+	});
+	</script>
 
 </body>
 </html>

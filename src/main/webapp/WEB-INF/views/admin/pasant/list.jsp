@@ -67,8 +67,8 @@
 							<th>Nombre de la empresa</th>
 							<th>Id de Alumno</th>
 							<th>Fecha</th>
-							<th>Edit</th>
-							<th>Delete</th>
+							<th>Opciones</th>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -88,7 +88,7 @@
 	$(document).ready(function(){
 		var table = $('#tablepasantia').DataTable({
 			"ajax": {
-				"url": "https://tecsup-cloned-sicked-sunday.c9users.io:8080/integrador-api/public/api/pasantia",     
+				"url": "https://ide50-sicked-sunday.cs50.io:8080/integrador-api/public/api/pasantia",     
 			},
 			"columns":[
 				{

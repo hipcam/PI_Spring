@@ -23,7 +23,7 @@
     <div id="map"></div>
     <script>
       function initMap() {
-    	      	 $.get({url: "http://tecsup-cloned-sicked-sunday.cs50.io:8080/integrador-api/public/api/alumnos/posiciones", crossDomain: true, dataType:'json' ,success: function(data){
+    	      	 $.get({url: "https://tecsup-cloned-sicked-sunday.cs50.io:8080/integrador-api/public/api/alumnos/posiciones", crossDomain: true, dataType:'json' ,success: function(data){
     	console.log("inside get");
            var splitted = data[0]["ubicacion"].split(" ");
 			var center = {lat: parseFloat(splitted[0]), lng: parseFloat(splitted[1])};

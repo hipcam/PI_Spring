@@ -67,11 +67,12 @@
 							<th>Ubicación</th>
 							<th>Hora de partida</th>
 							<th>Opciones</th>
+						
 				
 						</tr>
 					</thead>
 					<tbody>
-				
+			
 					</tbody>
 				</table>
 				<br /> 
@@ -90,7 +91,7 @@
 	$(document).ready(function(){
 		var table = $('#tableroute').DataTable({
 			"ajax": {
-				"url": "https://tecsup-cloned-sicked-sunday.c9users.io:8080/integrador-api/public/api/paradero",
+				"url": "https://ide50-sicked-sunday.cs50.io:8080/integrador-api/public/api/paraderos", 
 						
 			},
 			"columns":[
@@ -110,14 +111,13 @@
 			
 			rowId: 'idparadero',
 			"columnDefs": [{
-				"targets":4,
+				"targets": 4,
 				"data": null,
 				"defaultContent": "<button type='button'  id='btnEditar' class='btn btn-warning btn-circle'><i class='glyphicon glyphicon-edit'></i></button>"+
 				"<button type='button' id='btnEliminar' class='btn btn-danger btn-circle' data-toggle='#modal' data-target='#modalEditar'><i class='glyphicon glyphicon-trash'></i></button>"
 			}],
 			responsive: true
 		});
-//	
 
 	});
 	</script>

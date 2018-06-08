@@ -12,6 +12,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 </head>
 <body>
 
@@ -20,7 +26,7 @@
 			<div class="col-md-6">
 				<h4 class="text-center">Eliminar Bus</h4>
 				<hr>
-				<form:form method="post" servletRelativeAction="/admin/buses/delete" modelAttribute="buses">
+				<form:form id="deleteForm" method="post" servletRelativeAction="/admin/buses/delete" modelAttribute="buses">
 					<form:hidden path="idbus" />
 					<div class="form-group">
 						<label for="idbus">Id: </label>
@@ -38,5 +44,29 @@
 			</div>
 		</div>
 	</div>
+		<script>
+	$('#deleteForm').submit(function(event){
+		event.preventDefault();
+		var idbus = $("#txtId").val();
+
+		console.log(idbus);
+		$.ajax({
+			type:"GET",
+			data: JSON.stringify(obj),
+			url: "https://ide50-sicked-sunday.cs50.io:8080/integrador-api/public/api/paradero/destroy/"+idbus,
+			contentType: "application/json",
+			success: function(response){
+				console.log("Exito");
+				window.open('http://localhost:8081/gestion/admin/menu');
+				//table.ajax.reload();
+				//table.draw();
+				//$('#modalNuevo').modal('hide');
+				 // window.location = "localhost:8081/gestion/admin/routes/list";
+			}
+		}).fail(function($xhr){
+			var data = $xhr.responseJSON;
+		});
+	});
+	</script>
 </body>
 </html>
